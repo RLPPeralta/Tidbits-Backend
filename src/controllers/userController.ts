@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { recipe } from "../models/recipe";
+import { Recipe } from "../models/recipe";
 import { User } from "../models/user";
 import { comparePasswords, hashPassword } from "../services/auth";
 import { signUserToken, verifyUser } from "../services/auth";
