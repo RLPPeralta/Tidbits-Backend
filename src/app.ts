@@ -9,18 +9,13 @@ const app = express();
 
 app.use(morgan('dev'));
 
-
-const corsOptions = {
-    origin: [ 'http://localhost:4200', 'http://localhost:3001' ]
-};
-
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, '../src/public')));
 
 const cors = require('cors');
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use('/api/recipe', recipeRoutes);
 app.use('/api/users', userRoutes)
