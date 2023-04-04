@@ -12,6 +12,5 @@ router.get('/:id', getUser);
 router.put('/:id', editUser);
 router.get('/:id', getUser);
 router.get('/:id', getCurrentUser);
-router.put('/:id', editUser);
 
 export default router;
