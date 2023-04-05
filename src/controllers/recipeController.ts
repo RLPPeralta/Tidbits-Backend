@@ -57,6 +57,10 @@ export const editRecipe: RequestHandler = async (req, res, next) => {
     if (recipeFound && user.userId == recipeFound.userId 
         && req.body.recipe) {
             recipeFound.recipe = req.body.recipe;
+            recipeFound.instructions = req.body.instructions;
+            recipeFound.ingredients = req.body.ingredients;
+            recipeFound.continent = req.body.continent;
+            recipeFound.image = req.body.image;
             await recipeFound.save()
 
             res.status(200).json(recipeFound);
