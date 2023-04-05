@@ -99,8 +99,13 @@ export const editUser: RequestHandler = async (req, res, next) => {
     }
 
     if (userFound && user.userId == userFound.userId && req.body.email && req.body.lastName) { 
+        userFound.firstName = req.body.firstName;
         userFound.lastName = req.body.lastName;
         userFound.email = req.body.email;
+        userFound.password =  req.body.password;
+        userFound.continent = req.body.continent;
+        userFound.bio = req.body.bio;
+
 
         await userFound.save()
 
