@@ -11,6 +11,6 @@ router.post('/login', loginUser);
 router.get('/:id', getCurrentUser);
 router.get('/:id', getUser);
 router.put('/:id', editUser);
-router.get('/:id', getCurrentUser);
+
 
 export default router;
