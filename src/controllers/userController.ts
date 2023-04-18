@@ -71,9 +71,10 @@ export const getCurrentUser: RequestHandler = async (req, res, next) => {
     let userId = req.params.id;
 
     if (user) {
-        let { email, userId, firstName, lastName, bio, continent } = user;
+        let { email, userId, firstName, lastName, bio, continent, password } = user;
         res.status(200).json({
             email,
+            password,
             userId,
             firstName, 
             lastName, 
