@@ -90,3 +90,25 @@ export const deleteRecipe: RequestHandler = async (req, res, next) => {
         res.status(404).json();
     }
 }
+
+export const searchRecipe: RequestHandler = async (req, res, next) => {
+
+    let searchQuery = req.params.searchQuery;
+    let recipe = await Recipe.findAll({
+        where: {
+            [Op.or]: [
+                {
+                    recipe: 
+                    {  [Op.like]: `%${searchQuery}%` }
+                }
+            ],
+                    
+        }
+      });
+    if (recipe) {
+        res.status(200).json(recipe);
+    }
+    else {
+        res.status(404).json();
+    }
+}
