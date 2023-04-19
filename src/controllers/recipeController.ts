@@ -1,4 +1,5 @@
 import { RequestHandler } from "express";
+import { Op } from "sequelize";
 import { Recipe } from "../models/recipe";
 import { User } from "../models/user";
 import { verifyUser } from "../services/auth";
@@ -85,6 +86,28 @@ export const deleteRecipe: RequestHandler = async (req, res, next) => {
                 where: { recipeId: req.params.id }
         });
         res.status(200).json();
+    }
+    else {
+        res.status(404).json();
+    }
+}
+
+export const searchRecipe: RequestHandler = async (req, res, next) => {
+
+    let searchQuery = req.params.searchQuery;
+    let recipe = await Recipe.findAll({
+        where: {
+            [Op.or]: [
+                {
+                    recipe: 
+                    {  [Op.like]: `%${searchQuery}%` }
+                }
+            ],
+                    
+        }
+      });
+    if (recipe) {
+        res.status(200).json(recipe);
     }
     else {
         res.status(404).json();
