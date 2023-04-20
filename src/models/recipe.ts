@@ -9,6 +9,10 @@ export class Recipe extends Model<InferAttributes<Recipe>, InferCreationAttribut
     declare ingredients: string;
     declare continent: string;
     declare image: string;
+    declare country: string;
+    declare servings: string;
+    declare prepTime: string;
+    declare cookTime: string;
     declare createdAt?: Date;
     declare updatedAt?: Date;
 }
@@ -31,11 +35,11 @@ export function RecipeFactory(sequelize: Sequelize) {
             allowNull: false
         },
         instructions: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false
         },
         ingredients: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false
         },
         continent: {
@@ -46,8 +50,24 @@ export function RecipeFactory(sequelize: Sequelize) {
             type: DataTypes.STRING,
             allowNull: false
         },
+        country: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        servings: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        prepTime: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        cookTime: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         createdAt: {
-            type: DataTypes.DATE,
+            type: DataTypes.DATEONLY,
             allowNull: false,
             defaultValue: DataTypes.NOW,
         },

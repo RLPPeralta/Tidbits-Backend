@@ -7,7 +7,7 @@ import { verifyUser } from "../services/auth";
 
 
 export const getAllRecipe: RequestHandler = async (req, res, next) => {
-    let recipes = await Recipe.findAll();
+    let recipes = await Recipe.findAll({include: User});
     res.status(200).json(recipes);
 }
 
@@ -35,7 +35,7 @@ export const createRecipe: RequestHandler = async (req, res, next) => {
 
 export const getRecipe: RequestHandler = async (req, res, next) => {
     let recipeId = req.params.id;
-    let recipe = await Recipe.findByPk(recipeId);
+    let recipe = await Recipe.findByPk(recipeId, {include: User});
     if (recipe) {
         res.status(200).json(recipe);
     }
@@ -62,6 +62,10 @@ export const editRecipe: RequestHandler = async (req, res, next) => {
             recipeFound.ingredients = req.body.ingredients;
             recipeFound.continent = req.body.continent;
             recipeFound.image = req.body.image;
+            recipeFound.country = req.body.country;
+            recipeFound.servings = req.body.servings;
+            recipeFound.prepTime = req.body.prepTime;
+            recipeFound.cookTime = req.body.cookTime;
             await recipeFound.save()
 
             res.status(200).json(recipeFound);
