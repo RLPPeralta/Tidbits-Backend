@@ -38,7 +38,7 @@ export function UserFactory(sequelize: Sequelize) {
             allowNull: false
         },
         bio: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false
         },
         continent: { 
