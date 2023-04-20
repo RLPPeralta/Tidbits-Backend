@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createRecipe, deleteRecipe, getAllRecipe, getRecipe, editRecipe } from '../controllers/recipeController';
+import { createRecipe, deleteRecipe, getAllRecipe, getRecipe, editRecipe, searchRecipe } from '../controllers/recipeController';
 
 
 const router = Router();
@@ -19,5 +19,7 @@ router.put('/:id', editRecipe);
 // DELETE /recipe/recipeId - deletes recipe by recipeId
 router.delete('/:id', deleteRecipe);
 
+//test it out in postman and call search query (id)
+router.get('/:searchQuery', searchRecipe);
 
 export default router;
