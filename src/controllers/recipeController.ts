@@ -117,3 +117,18 @@ export const searchRecipe: RequestHandler = async (req, res, next) => {
         res.status(404).json();
     }
 }
+
+export const getAllUserRecipe: RequestHandler = async (req, res, next) => {
+     let currentUserId = req.params.userId
+     let recipe = await Recipe.findAll ({
+        where: { 
+        userId: `${currentUserId}`
+        }
+     })
+     if (recipe) {
+        res.status(200).json(recipe);
+    }
+    else {
+        res.status(404).json();
+    }
+}
