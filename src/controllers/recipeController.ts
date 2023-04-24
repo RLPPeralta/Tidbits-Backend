@@ -1,4 +1,5 @@
 import { RequestHandler } from "express";
+import { userInfo } from "os";
 import { Op } from "sequelize";
 import { Recipe } from "../models/recipe";
 import { User } from "../models/user";
@@ -118,17 +119,24 @@ export const searchRecipe: RequestHandler = async (req, res, next) => {
     }
 }
 
-export const getAllUserRecipe: RequestHandler = async (req, res, next) => {
-     let currentUserId = req.params.userId
-     let recipe = await Recipe.findAll ({
-        where: { 
-        userId: `${currentUserId}`
-        }
-     })
-     if (recipe) {
+export const getCurrentUserRecipes: RequestHandler = async (req, res, next) => {
+    console.log('Im in getCurrentUserRecipes');
+    let user: User | null = await verifyUser(req);
+
+    if (user) {
+        let { userId } = user;
+        
+        let recipe = await Recipe.findAll ({
+            where: { 
+            userId: `${userId}`
+            }
+         })
+         
         res.status(200).json(recipe);
+        
     }
     else {
-        res.status(404).json();
+        res.status(401).send();
     }
+  
 }
