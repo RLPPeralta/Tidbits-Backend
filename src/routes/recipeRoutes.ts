@@ -23,7 +23,7 @@ router.put('/:id', editRecipe);
 router.delete('/:id', deleteRecipe);
 
 //test it out in postman and call search query (id)
-router.get('/:searchQuery', searchRecipe);
+router.get('/search/:searchQuery', searchRecipe);
 
 
 
