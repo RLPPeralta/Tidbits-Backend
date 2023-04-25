@@ -140,3 +140,23 @@ export const getCurrentUserRecipes: RequestHandler = async (req, res, next) => {
     }
   
 }
+
+export const getUserRecipesById: RequestHandler = async (req, res, next) => {
+    console.log('Im in getUserRecipes');
+    let userId = req.params.id; 
+    if (userId != null) {
+                let recipe = await Recipe.findAll ({
+            where: { 
+            userId: `${userId}`
+            }
+         })
+         
+        res.status(200).json(recipe);
+        
+    }
+    else {
+        res.status(401).send();
+    }
+   
+  
+}

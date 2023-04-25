@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createRecipe, deleteRecipe, getAllRecipe, getRecipe, editRecipe, searchRecipe, getCurrentUserRecipes } from '../controllers/recipeController';
+import { createRecipe, deleteRecipe, getAllRecipe, getRecipe, editRecipe, searchRecipe, getCurrentUserRecipes, getUserRecipesById } from '../controllers/recipeController';
 
 
 const router = Router();
@@ -10,8 +10,11 @@ router.get('/', getAllRecipe);
 // POST /recipe - creates a recipe
 router.post('/', createRecipe);
 
-// GET /recipe/currentuser/userId - get user recipes by userId
+// GET /recipe/userrecipes/ - get logged in user recipes 
 router.get('/userrecipes', getCurrentUserRecipes);
+
+// GET /recipe/userprofilerecipes/userId - get user recipes by userId
+router.get('/userprofilerecipes/:id', getUserRecipesById);
 
 // GET /recipe/recipeId - gets a recipe by the recipeId
 router.get('/:id', getRecipe);
