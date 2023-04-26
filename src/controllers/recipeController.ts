@@ -111,12 +111,9 @@ export const searchRecipe: RequestHandler = async (req, res, next) => {
                     
         }
       });
-    if (recipe) {
-        res.status(200).json(recipe);
-    }
-    else {
-        res.status(404).json();
-    }
+    
+    res.status(200).json(recipe);
+
 }
 
 export const getCurrentUserRecipes: RequestHandler = async (req, res, next) => {
