@@ -21,11 +21,10 @@ export const getAllComments: RequestHandler = async (req, res, next) => {
 };
 
 export const getUserComments: RequestHandler = async (req, res, next) => {
-    // getting logged in user with token
+    
     let user: User | null = await verifyUser(req);
 
     if (user) {
-        // getting comments made by this user
         const result = await User.findByPk(user.userId, {
             include: Recipe
         });
@@ -55,6 +54,17 @@ export const createComment: RequestHandler = async (req, res, next) => {
     else {
         res.status(400).send();
     }
+};
+
+export const getRecipeComments: RequestHandler = async (req, res, next) => {
+
+    let recipeId = req.params.recipeId;
+    let commentFound = await Comment.findAll({where: {
+        RecipeRecipeId: recipeId
+    }});
+
+    res.status(200).json(commentFound);
+   
 };
 
 export const getComment: RequestHandler = async (req, res, next) => {

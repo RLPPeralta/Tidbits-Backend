@@ -82,8 +82,8 @@ export function RecipeFactory(sequelize: Sequelize) {
         sequelize
     });
 
-    Recipe.belongsTo(User);
-    User.hasMany(Recipe);
+    Recipe.belongsTo(User, {foreignKey: 'userId'});
+    User.hasMany(Recipe, {foreignKey: 'userId'});
 }
 
 // export function AssociateUserRecipe() {

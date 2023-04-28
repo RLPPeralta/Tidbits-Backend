@@ -4,6 +4,7 @@ import { Op } from "sequelize";
 import { Recipe } from "../models/recipe";
 import { User } from "../models/user";
 import { verifyUser } from "../services/auth";
+import { Comment } from "../models/comment";
 
 
 
@@ -36,7 +37,7 @@ export const createRecipe: RequestHandler = async (req, res, next) => {
 
 export const getRecipe: RequestHandler = async (req, res, next) => {
     let recipeId = req.params.id;
-    let recipe = await Recipe.findByPk(recipeId, {include: User});
+    let recipe = await Recipe.findByPk(recipeId, {include: [User, Comment]});
     if (recipe) {
         res.status(200).json(recipe);
     }
