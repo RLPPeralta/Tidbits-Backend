@@ -81,9 +81,12 @@ export function RecipeFactory(sequelize: Sequelize) {
         tableName: 'recipes',
         sequelize
     });
+
+    Recipe.belongsTo(User, {foreignKey: 'userId'});
+    User.hasMany(Recipe, {foreignKey: 'userId'});
 }
 
-export function AssociateUserRecipe() {
-    User.hasMany(Recipe, { foreignKey: 'userId' });
-    Recipe.belongsTo(User, { foreignKey: 'userId' });
-}
+// export function AssociateUserRecipe() {
+//     User.hasMany(Recipe, { foreignKey: 'userId' });
+//     Recipe.belongsTo(User, { foreignKey: 'userId' });
+// }

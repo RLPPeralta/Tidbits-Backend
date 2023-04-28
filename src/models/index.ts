@@ -1,6 +1,8 @@
 import { Sequelize } from "sequelize";
-import { AssociateUserRecipe, RecipeFactory } from "./recipe";
+// import { AssociateUserRecipe} from "./recipe";
 import { UserFactory } from "./user";
+import { CommentFactory } from "./comment";
+import { RecipeFactory } from "./recipe";
 
 const dbName = 'recipeDB';
 const username = 'root';
@@ -12,9 +14,11 @@ const sequelize = new Sequelize(dbName, username, password, {
     dialect: 'mysql'
 });
 
-RecipeFactory(sequelize);
 UserFactory(sequelize);
-AssociateUserRecipe();
+RecipeFactory(sequelize);
+CommentFactory(sequelize);
+// AssociateUserRecipe();
+
 
 export const db = sequelize;
 

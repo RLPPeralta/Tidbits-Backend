@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import path from 'path';
 import recipeRoutes from  './routes/recipeRoutes';
 import userRoutes from './routes/userRoutes';
+import commentRoutes from './routes/commentRoutes'
 import { db } from './models';
 
 const app = express();
@@ -18,7 +19,9 @@ const cors = require('cors');
 app.use(cors());
 
 app.use('/api/recipe', recipeRoutes);
+app.use('/api/comments', commentRoutes);
 app.use('/api/users', userRoutes)
+
 
 app.use((req: Request, res: Response, next: NextFunction) => {
     res.status(404).render('error', {
