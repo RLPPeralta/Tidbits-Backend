@@ -53,4 +53,3 @@ export function CommentFactory(sequelize: Sequelize) {
     Recipe.hasMany(Comment)
 
 };
-
