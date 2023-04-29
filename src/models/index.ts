@@ -1,5 +1,4 @@
 import { Sequelize } from "sequelize";
-// import { AssociateUserRecipe} from "./recipe";
 import { UserFactory } from "./user";
 import { CommentFactory } from "./comment";
 import { RecipeFactory } from "./recipe";
